@@ -1,0 +1,255 @@
+@import 'partials/base';
+@import 'partials/animation';
+
+/* ==========================================================================
+   Main Styles
+   ========================================================================== */
+
+// mobile hierarchy
+$base: 2.3rem;
+body {
+    font-size: 1.4rem;
+    line-height: $base;
+    letter-spacing: 0.025em;
+    background: $base-bg;
+}
+
+h1 {
+    font-size: 3.4rem;
+}
+
+h2 {
+    font-size: 2.1rem;
+}
+
+h3 {
+    font-size: 1em;
+}
+
+// desktop hierarchy
+@media only screen and (min-width: 800px) {
+    $base: 3.4rem !global;
+    body {
+        font-size: 2.1rem;
+        line-height: $base;
+    }
+    h1 {
+        font-size: 5.5rem;
+    }
+    h2 {
+        font-size: 3.4rem;
+    }
+    h3 {
+        font-size: 1em;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+p {
+    margin-bottom: $base;
+}
+
+// #home #preloader {
+//     background: white;
+// }
+// #deckster,
+// #deckster #preloader {
+//     background: $deckster-bg;
+// }
+// #lahacks,
+// #lahacks #preloader {
+//     background: $lahacks-bg;
+// }
+// #bruinbash,
+// #bruinbash #preloader {
+//     background: $bruinbash-bg;
+// }
+// #juggle,
+// #juggle #preloader {
+//     background: $juggle-bg;
+// }
+// #ageago,
+// #ageago #preloader {
+//     background: $ageago-bg;
+// }
+// #localsonly,
+// #localsonly #preloader {
+//     background: $localsonly-bg;
+// }
+// #sozo,
+// #sozo #preloader {
+//     background: $sozo-bg;
+// }
+// #foodtrucksofla,
+// #foodtrucksofla #preloader {
+//     background: $foodtrucksofla-bg;
+// }
+// #preloader {
+//     height: 100%;
+//     position: relative;
+//     width: 100%;
+//     z-index: 998;
+//     overflow: hidden;
+//     .progress-bar {
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         max-width: 100vw;
+//         background-color: $light-nav-bg;
+//         z-index: 999;
+//         @include transition(width .25s ease-in);
+//     }
+// }
+a {
+    text-decoration: none;
+    color: $dark-text;
+    border-bottom: 0.125em solid $dark-text;
+}
+
+nav {
+    @include display(flex);
+    @include flex-flow(row wrap);
+    @include align-items(center);
+    @include justify-content(space-between);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    padding: 1em 0;
+    background-color: $light-nav-bg;
+    z-index: 10;
+    .nav__container {
+        @include display(flex);
+        @include flex-flow(row wrap);
+        @include justify-content(space-between);
+    }
+    .nav__link {
+        margin-right: 2 * $base;
+        text-transform: none;
+        letter-spacing: 0.025em;
+        &:link,
+        &.visited {
+            border-bottom: 0.125em solid transparent;
+        }
+        &.active,
+        &:hover,
+        &:active {
+            border-bottom: 0.125em solid $dark-text;
+        }
+    }
+    .nav__link--home {
+        margin-left: 2 * $base;
+    }
+}
+
+.gallery-container {
+    max-width: 72.4rem;
+    margin: 0 auto;
+    margin-top: 7.6rem + $base;
+    @debug 7.6rem + $base;
+    @debug $base;
+}
+
+.gallery-filters {
+    max-width: 60rem;
+    margin: 0 auto;
+    margin-bottom: 2 * $base;
+    text-align: center;
+    a {
+        &:link,
+        &.visited {
+            border-bottom: 0.125em solid transparent;
+            opacity: 0.5;
+        }
+        &.active,
+        &:hover,
+        &:active {
+            border-bottom: 0.125em solid $dark-text;
+            opacity: 1;
+        }
+    }
+}
+
+.gallery-item {
+    width: 100%;
+    margin: 2 * $base 0;
+    img {
+        width: 100%;
+    }
+    .gallery-item__info {
+        max-width: 60rem;
+        margin: 0 auto;
+        padding-top: $base;
+        @include display(flex);
+        @include flex-flow(row wrap);
+        @include align-items(baseline);
+        @include justify-content(space-between);
+    }
+    .gallery-item__name a {
+        border-bottom: none;
+        &:link,
+        &.visited {
+            opacity: 0.5;
+        }
+        &:hover,
+        &:active {
+            opacity: 1;
+        }
+    }
+    .gallery-item__tags {
+        margin: 0;
+        a {
+            &:link,
+            &.visited {
+                border-bottom: 0.125em solid transparent;
+                opacity: 0.5;
+            }
+            &:hover,
+            &:active {
+                border-bottom: 0.125em solid $dark-text;
+                opacity: 1;
+            }
+        }
+    }
+    .gallery-item__year {
+        display: none;
+    }
+}
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+// large-desktop
+// desktop
+// tablet
+@media only screen and (max-width: 1024px) {}
+
+// portrait mobile
+@media only screen and (max-width: 768px) {
+    nav {
+        .nav__link {
+            margin-right: $base;
+        }
+        .nav__link--home {
+            margin-left: $base;
+        }
+    }
+    .gallery-container {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+// very small mobile (i.e. iphone 5) specific styles...
+// bump the nav font-size down OR let the links wrap and center both rows

@@ -1,0 +1,14 @@
+/* ==========================================================================
+   Fonts
+   ========================================================================== */
+
+@include font-face('Audimat', '../fonts/audimat-regular', normal, $file-formats: woff2 woff ttf eot);
+@include font-face('Audimat', '../fonts/audimat-bold', bold, $file-formats: woff2 woff ttf eot);
+@include font-face('Audimat', '../fonts/audimat-italic', normal, italic, $file-formats: woff2 woff ttf eot);
+@include font-face('Audimat', '../fonts/audimat-bolditalic', bold, italic, $file-formats: woff2 woff ttf eot);
+
+// font variables
+$base-font-family: 'Audimat';
+$fallback-font-family: 'Arial';
+$regular: 400;
+$bold: 700;
