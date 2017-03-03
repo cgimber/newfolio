@@ -364,7 +364,10 @@ p {
 a {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.8);
-  border-bottom: 0.125em solid rgba(0, 0, 0, 0.8); }
+  border-bottom: 0.125em solid rgba(0, 0, 0, 0.8);
+  -webkit-transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out, opacity 0.25s ease-in-out, border-bottom 0.25s ease-in-out;
+  -moz-transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out, opacity 0.25s ease-in-out, border-bottom 0.25s ease-in-out;
+  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out, opacity 0.25s ease-in-out, border-bottom 0.25s ease-in-out; }
 
 nav {
   display: -webkit-box;
@@ -402,36 +405,45 @@ nav {
   padding: 1em 0;
   background-color: rgba(255, 255, 255, 0.95);
   z-index: 10; }
-  nav .nav__container {
-    display: -webkit-box;
-    display: -moz-box;
-    display: box;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-flow: row wrap;
-    -moz-flex-flow: row wrap;
-    flex-flow: row wrap;
-    -webkit-box-pack: justify;
-    -moz-box-pack: justify;
-    box-pack: justify;
-    -webkit-justify-content: space-between;
-    -moz-justify-content: space-between;
-    -ms-justify-content: space-between;
-    -o-justify-content: space-between;
-    justify-content: space-between;
-    -ms-flex-pack: justify; }
-  nav .nav__link {
-    margin-right: 6.8rem;
-    text-transform: none;
-    letter-spacing: 0.025em; }
-    nav .nav__link:link, nav .nav__link.visited {
-      border-bottom: 0.125em solid transparent; }
-    nav .nav__link.active, nav .nav__link:hover, nav .nav__link:active {
-      border-bottom: 0.125em solid rgba(0, 0, 0, 0.8); }
-  nav .nav__link--home {
-    margin-left: 6.8rem; }
+
+.nav__container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -moz-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  box-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;
+  -ms-flex-pack: justify; }
+
+.nav__link {
+  margin-right: 6.8rem;
+  text-transform: none;
+  letter-spacing: 0.025em; }
+  .nav__link a:link,
+  .nav__link a.visited {
+    border-bottom: 0.125em solid transparent; }
+  .nav__link.active a,
+  .nav__link a:hover,
+  .nav__link a:active {
+    border-bottom: 0.125em solid rgba(0, 0, 0, 0.8); }
+
+.nav__link--home {
+  margin-left: 6.8rem; }
+
+.nav__link--hamburger {
+  display: none; }
 
 .gallery-container {
   max-width: 72.4rem;
@@ -455,66 +467,82 @@ nav {
   margin: 6.8rem 0; }
   .gallery-item img {
     width: 100%; }
-  .gallery-item .gallery-item__info {
-    max-width: 60rem;
-    margin: 0 auto;
-    padding-top: 3.4rem;
-    display: -webkit-box;
-    display: -moz-box;
-    display: box;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-flow: row wrap;
-    -moz-flex-flow: row wrap;
-    flex-flow: row wrap;
-    -webkit-box-align: baseline;
-    -moz-box-align: baseline;
-    box-align: baseline;
-    -webkit-align-items: baseline;
-    -moz-align-items: baseline;
-    -ms-align-items: baseline;
-    -o-align-items: baseline;
-    align-items: baseline;
-    -ms-flex-align: baseline;
-    -webkit-box-pack: justify;
-    -moz-box-pack: justify;
-    box-pack: justify;
-    -webkit-justify-content: space-between;
-    -moz-justify-content: space-between;
-    -ms-justify-content: space-between;
-    -o-justify-content: space-between;
-    justify-content: space-between;
-    -ms-flex-pack: justify; }
-  .gallery-item .gallery-item__name a {
-    border-bottom: none; }
-    .gallery-item .gallery-item__name a:link, .gallery-item .gallery-item__name a.visited {
-      opacity: 0.5; }
-    .gallery-item .gallery-item__name a:hover, .gallery-item .gallery-item__name a:active {
-      opacity: 1; }
-  .gallery-item .gallery-item__tags {
-    margin: 0; }
-    .gallery-item .gallery-item__tags a:link, .gallery-item .gallery-item__tags a.visited {
-      border-bottom: 0.125em solid transparent;
-      opacity: 0.5; }
-    .gallery-item .gallery-item__tags a:hover, .gallery-item .gallery-item__tags a:active {
-      border-bottom: 0.125em solid rgba(0, 0, 0, 0.8);
-      opacity: 1; }
-  .gallery-item .gallery-item__year {
-    display: none; }
+
+.gallery-item__info {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding-top: 3.4rem;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -moz-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-align: baseline;
+  -moz-box-align: baseline;
+  box-align: baseline;
+  -webkit-align-items: baseline;
+  -moz-align-items: baseline;
+  -ms-align-items: baseline;
+  -o-align-items: baseline;
+  align-items: baseline;
+  -ms-flex-align: baseline;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  box-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;
+  -ms-flex-pack: justify; }
+
+.gallery-item__name a {
+  border-bottom: none; }
+  .gallery-item__name a:link, .gallery-item__name a.visited {
+    opacity: 0.5; }
+  .gallery-item__name a:hover, .gallery-item__name a:active {
+    opacity: 1; }
+
+.gallery-item__tags {
+  margin: 0; }
+  .gallery-item__tags a:link, .gallery-item__tags a.visited {
+    border-bottom: 0.125em solid transparent;
+    opacity: 0.5; }
+  .gallery-item__tags a:hover, .gallery-item__tags a:active {
+    border-bottom: 0.125em solid rgba(0, 0, 0, 0.8);
+    opacity: 1; }
+
+.gallery-item__year {
+  display: none; }
 
 /* ==========================================================================
    Media Queries
    ========================================================================== */
 @media only screen and (max-width: 768px) {
-  nav .nav__link {
+  .nav__link {
     margin-right: 3.4rem; }
-  nav .nav__link--home {
+
+  .nav__link--home {
     margin-left: 3.4rem; }
 
   .gallery-container {
     width: 100%;
     margin: 0; } }
+@media only screen and (max-width: 445px) {
+  .nav__container {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 11; }
+
+  .nav__link--hamburger {
+    display: block; } }
 
 /*# sourceMappingURL=main.css.map */

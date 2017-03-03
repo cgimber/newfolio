@@ -113,6 +113,7 @@ a {
     text-decoration: none;
     color: $dark-text;
     border-bottom: 0.125em solid $dark-text;
+    @include transition(background-color .25s ease-in-out, color .25s ease-in-out, opacity .25s ease-in-out, border-bottom .25s ease-in-out);
 }
 
 nav {
@@ -127,28 +128,35 @@ nav {
     padding: 1em 0;
     background-color: $light-nav-bg;
     z-index: 10;
-    .nav__container {
-        @include display(flex);
-        @include flex-flow(row wrap);
-        @include justify-content(space-between);
+}
+
+.nav__container {
+    @include display(flex);
+    @include flex-flow(row wrap);
+    @include justify-content(space-between);
+}
+
+.nav__link {
+    margin-right: 2 * $base;
+    text-transform: none;
+    letter-spacing: 0.025em;
+    a:link,
+    a.visited {
+        border-bottom: 0.125em solid transparent;
     }
-    .nav__link {
-        margin-right: 2 * $base;
-        text-transform: none;
-        letter-spacing: 0.025em;
-        &:link,
-        &.visited {
-            border-bottom: 0.125em solid transparent;
-        }
-        &.active,
-        &:hover,
-        &:active {
-            border-bottom: 0.125em solid $dark-text;
-        }
+    &.active a,
+    a:hover,
+    a:active {
+        border-bottom: 0.125em solid $dark-text;
     }
-    .nav__link--home {
-        margin-left: 2 * $base;
-    }
+}
+
+.nav__link--home {
+    margin-left: 2 * $base;
+}
+
+.nav__link--hamburger {
+    display: none;
 }
 
 .gallery-container {
@@ -185,44 +193,48 @@ nav {
     img {
         width: 100%;
     }
-    .gallery-item__info {
-        max-width: 60rem;
-        margin: 0 auto;
-        padding-top: $base;
-        @include display(flex);
-        @include flex-flow(row wrap);
-        @include align-items(baseline);
-        @include justify-content(space-between);
+}
+
+.gallery-item__info {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding-top: $base;
+    @include display(flex);
+    @include flex-flow(row wrap);
+    @include align-items(baseline);
+    @include justify-content(space-between);
+}
+
+.gallery-item__name a {
+    border-bottom: none;
+    &:link,
+    &.visited {
+        opacity: 0.5;
     }
-    .gallery-item__name a {
-        border-bottom: none;
+    &:hover,
+    &:active {
+        opacity: 1;
+    }
+}
+
+.gallery-item__tags {
+    margin: 0;
+    a {
         &:link,
         &.visited {
+            border-bottom: 0.125em solid transparent;
             opacity: 0.5;
         }
         &:hover,
         &:active {
+            border-bottom: 0.125em solid $dark-text;
             opacity: 1;
         }
     }
-    .gallery-item__tags {
-        margin: 0;
-        a {
-            &:link,
-            &.visited {
-                border-bottom: 0.125em solid transparent;
-                opacity: 0.5;
-            }
-            &:hover,
-            &:active {
-                border-bottom: 0.125em solid $dark-text;
-                opacity: 1;
-            }
-        }
-    }
-    .gallery-item__year {
-        display: none;
-    }
+}
+
+.gallery-item__year {
+    display: none;
 }
 
 
@@ -231,25 +243,41 @@ nav {
    ========================================================================== */
 
 // large-desktop
-// desktop
-// tablet
+@media only screen and (max-width: 1800px) {}
+
+// small desktop
 @media only screen and (max-width: 1024px) {}
 
-// portrait mobile
+// large mobile
 @media only screen and (max-width: 768px) {
-    nav {
-        .nav__link {
-            margin-right: $base;
-        }
-        .nav__link--home {
-            margin-left: $base;
-        }
+    .nav__link {
+        margin-right: $base;
+    }
+    .nav__link--home {
+        margin-left: $base;
     }
     .gallery-container {
         width: 100%;
         margin: 0;
     }
 }
+
+@media only screen and (max-width: 445px) {
+    .nav__container { // this becomes a modal
+        display: none;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background: $light-nav-bg;
+        z-index: 11;
+    }
+    .nav__link--hamburger { // show/hide toggle
+        display: block;
+    }
+}
+
+// small mobile
+@media only screen and (max-width: 320px) {}
 
 // very small mobile (i.e. iphone 5) specific styles...
 // bump the nav font-size down OR let the links wrap and center both rows
