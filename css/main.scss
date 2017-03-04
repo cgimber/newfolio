@@ -5,43 +5,24 @@
    Main Styles
    ========================================================================== */
 
-// mobile hierarchy
-$base: 2.3rem;
+$base: 3.4rem; // 2.3rem on mobile
 body {
-    font-size: 1.4rem;
+    font-size: 2.1rem;
     line-height: $base;
     letter-spacing: 0.025em;
     background: $base-bg;
 }
 
 h1 {
-    font-size: 3.4rem;
+    font-size: 5.5rem;
 }
 
 h2 {
-    font-size: 2.1rem;
+    font-size: 3.4rem;
 }
 
 h3 {
     font-size: 1em;
-}
-
-// desktop hierarchy
-@media only screen and (min-width: 800px) {
-    $base: 3.4rem !global;
-    body {
-        font-size: 2.1rem;
-        line-height: $base;
-    }
-    h1 {
-        font-size: 5.5rem;
-    }
-    h2 {
-        font-size: 3.4rem;
-    }
-    h3 {
-        font-size: 1em;
-    }
 }
 
 h1,
@@ -127,6 +108,7 @@ nav {
     width: 100vw;
     padding: 1em 0;
     background-color: $light-nav-bg;
+    box-shadow: 0 2px 0 0 $dark-shadow;
     z-index: 10;
 }
 
@@ -163,8 +145,6 @@ nav {
     max-width: 72.4rem;
     margin: 0 auto;
     margin-top: 7.6rem + $base;
-    @debug 7.6rem + $base;
-    @debug $base;
 }
 
 .gallery-filters {
@@ -190,30 +170,39 @@ nav {
 .gallery-item {
     width: 100%;
     margin: 2 * $base 0;
-    img {
-        width: 100%;
+    @include display(flex);
+    @include flex-flow(column nowrap);
+    @include align-items(flex-start);
+    @include justify-content(space-between);
+    @media only screen and (min-width: 769px) {
+        @include flex-flow(row wrap);
     }
 }
 
-.gallery-item__info {
-    max-width: 60rem;
-    margin: 0 auto;
-    padding-top: $base;
-    @include display(flex);
-    @include flex-flow(row wrap);
-    @include align-items(baseline);
-    @include justify-content(space-between);
+.gallery-item__header {
+    @media only screen and (min-width: 769px) {
+        margin-left: 6.2rem;
+    }
 }
 
-.gallery-item__name a {
+.gallery-item__title a {
     border-bottom: none;
     &:link,
     &.visited {
-        opacity: 0.5;
+        opacity: 1;
     }
     &:hover,
     &:active {
-        opacity: 1;
+        opacity: 0.5;
+    }
+}
+
+.gallery-item__media {
+    width: 100%;
+    box-shadow: 4px 4px 0 0 $dark-shadow;
+    @media only screen and (min-width: 769px) {
+        @include order(-1);
+        margin-bottom: 1em;
     }
 }
 
@@ -231,9 +220,13 @@ nav {
             opacity: 1;
         }
     }
+    @media only screen and (min-width: 769px) {
+        margin-right: 6.2rem;
+    }
 }
 
 .gallery-item__year {
+    margin: 0;
     display: none;
 }
 
@@ -243,13 +236,63 @@ nav {
    ========================================================================== */
 
 // large-desktop
-@media only screen and (max-width: 1800px) {}
+@media only screen and (min-width: 1799px) {
+    .gallery-container {
+        max-width: 144.8rem;
+    }
+    .gallery-item {
+        @include flex(row wrap);
+        @include justify-content(flex-start);
+    }
+    .gallery-item__header {
+        margin-left: 13.6rem;
+        margin-top: 6.8rem;
+    }
+    .gallery-item__title {
+        font-size: 5.5rem;
+        display: inline-block;
+    }
+    .gallery-item__media {
+        width: 50%;
+    }
+    .gallery-item__tags {
+        position: relative;
+        bottom: 36rem;
+        left: 72.4rem + 13.6rem;
+        font-size: 3.4rem;
+    }
+    .gallery-item__year {
+        display: inline-block;
+        margin-left: 2.3rem;
+    }
+}
 
 // small desktop
-@media only screen and (max-width: 1024px) {}
+@media only screen and (max-width: 1024px) {
+    .nav__link {
+        margin-right: $base;
+    }
+    .nav__link--home {
+        margin-left: $base;
+    }
+}
 
 // large mobile
 @media only screen and (max-width: 768px) {
+    $base: 2.3rem;
+    body {
+        font-size: 1.4rem;
+        line-height: $base;
+    }
+    h1 {
+        font-size: 3.4rem;
+    }
+    h2 {
+        font-size: 2.1rem;
+    }
+    h3 {
+        font-size: 1em;
+    }
     .nav__link {
         margin-right: $base;
     }
@@ -257,13 +300,29 @@ nav {
         margin-left: $base;
     }
     .gallery-container {
-        width: 100%;
+        margin-top: 5.1rem + $base;
+        margin-left: $base;
+        margin-right: $base;
+    }
+    .gallery-filters {
         margin: 0;
+        margin-bottom: 2 * $base;
+        text-align: left;
+    }
+    .gallery-item {
+        margin: 2 * $base 0;
+    }
+    .gallery-item__media {
+        margin: 0.5em 0;
+    }
+    .gallery-item__tags {
+        @include align-self(flex-end);
     }
 }
 
 @media only screen and (max-width: 445px) {
-    .nav__container { // this becomes a modal
+    .nav__container {
+        // this becomes a modal
         display: none;
         position: absolute;
         width: 100vw;
@@ -271,7 +330,8 @@ nav {
         background: $light-nav-bg;
         z-index: 11;
     }
-    .nav__link--hamburger { // show/hide toggle
+    .nav__link--hamburger {
+        // show/hide toggle
         display: block;
     }
 }
