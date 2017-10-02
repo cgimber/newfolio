@@ -3,7 +3,14 @@
 
 /* document ready
 ---------------------------------------------------------------------*/
-$(document).ready(function() {});
+$(document).ready(function() {
+	$('video').hover(function() {
+		this.play();
+	}, function() {
+		this.pause();
+		this.currentTime = 0;
+	});
+});
 
 /* functions
 ---------------------------------------------------------------------*/
