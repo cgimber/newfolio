@@ -2,13 +2,11 @@
    Fonts
    ========================================================================== */
 
-@include font-face('Audimat', '../fonts/audimat-regular', normal, $file-formats: woff2 woff ttf eot);
-@include font-face('Audimat', '../fonts/audimat-bold', bold, $file-formats: woff2 woff ttf eot);
-@include font-face('Audimat', '../fonts/audimat-italic', normal, italic, $file-formats: woff2 woff ttf eot);
-@include font-face('Audimat', '../fonts/audimat-bolditalic', bold, italic, $file-formats: woff2 woff ttf eot);
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,500,500i,700');
 
 // font variables
-$base-font-family: 'Audimat';
-$fallback-font-family: 'Arial';
+$base-font-family: 'Rubik';
+$fallback-font-family: 'sans-serif';
 $regular: 400;
+$medium: 500;
 $bold: 700;

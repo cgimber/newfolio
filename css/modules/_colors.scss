@@ -2,15 +2,20 @@
    Colors
    ========================================================================== */
 
+// primary
+$ink: rgba(0, 0, 0, 0.8);
+$shadow: rgba(0, 0, 0, 0.50);
+$paper: rgba(0, 0, 0, 0.05);
+
 // text
-$dark-text: rgba(0, 0, 0, 0.8);
+$dark-text: $ink;
 $light-text: white;
 $lighter-text: rgba(255, 255, 255, 0.8);
 $dark-text-highlight: yellow;
 $light-text-highlight: rgba(255, 255, 255, 0.25);
 
 // background
-$base-bg: rgba(0, 0, 0, 0.05);
+$base-bg: $paper;
 $home-bg: $base-bg;
 $info-bg: $base-bg;
 $deckster-bg: #2d2d2d;
@@ -24,4 +29,4 @@ $foodtrucksofla-bg: #F29D35;
 $light-nav-bg: rgba(255, 255, 255, 0.95);
 
 // interface
-$dark-shadow: rgba(0, 0, 0, 0.50);
+$dark-shadow: $shadow;

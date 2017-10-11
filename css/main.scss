@@ -5,24 +5,25 @@
    Main Styles
    ========================================================================== */
 
-$base: 3.4rem; // 2.3rem on mobile
+$base: 3.06rem; // 2.3rem on mobile
 body {
-    font-size: 2.1rem;
+    font-size: 1.8rem;
     line-height: $base;
-    letter-spacing: 0.025em;
+    letter-spacing: 0;
     background: $base-bg;
+    overflow: hidden;
 }
 
 h1 {
-    font-size: 5.5rem;
+    font-size: 4.2rem;
 }
 
 h2 {
-    font-size: 3.4rem;
+    font-size: 2.4rem;
 }
 
 h3 {
-    font-size: 1em;
+    font-size: 2.1rem;
 }
 
 h1,
@@ -36,60 +37,9 @@ h6 {
 }
 
 p {
-    margin-bottom: $base;
+    margin-bottom: 1em;
 }
 
-// #home #preloader {
-//     background: white;
-// }
-// #deckster,
-// #deckster #preloader {
-//     background: $deckster-bg;
-// }
-// #lahacks,
-// #lahacks #preloader {
-//     background: $lahacks-bg;
-// }
-// #bruinbash,
-// #bruinbash #preloader {
-//     background: $bruinbash-bg;
-// }
-// #juggle,
-// #juggle #preloader {
-//     background: $juggle-bg;
-// }
-// #ageago,
-// #ageago #preloader {
-//     background: $ageago-bg;
-// }
-// #localsonly,
-// #localsonly #preloader {
-//     background: $localsonly-bg;
-// }
-// #sozo,
-// #sozo #preloader {
-//     background: $sozo-bg;
-// }
-// #foodtrucksofla,
-// #foodtrucksofla #preloader {
-//     background: $foodtrucksofla-bg;
-// }
-// #preloader {
-//     height: 100%;
-//     position: relative;
-//     width: 100%;
-//     z-index: 998;
-//     overflow: hidden;
-//     .progress-bar {
-//         position: absolute;
-//         top: 0;
-//         left: 0;
-//         max-width: 100vw;
-//         background-color: $light-nav-bg;
-//         z-index: 999;
-//         @include transition(width .25s ease-in);
-//     }
-// }
 a {
     text-decoration: none;
     color: $dark-text;
@@ -98,47 +48,124 @@ a {
 }
 
 nav {
-    @include display(flex);
-    @include flex-flow(row wrap);
-    @include align-items(center);
-    @include justify-content(space-between);
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     padding: 1em 0;
-    background-color: $light-nav-bg;
-    box-shadow: 0 2px 0 0 $dark-shadow;
+    // background-color: $light-nav-bg;
+    // box-shadow: 0 2px 0 0 $dark-shadow;
     z-index: 10;
 }
 
 .nav__container {
-    @include display(flex);
-    @include flex-flow(row wrap);
-    @include justify-content(space-between);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
 }
 
 .nav__link {
     margin-right: 2 * $base;
+    font-size: 2.1rem;
+    font-weight: $regular;
     text-transform: none;
-    letter-spacing: 0.025em;
+    letter-spacing: 0;
     a:link,
     a.visited {
         border-bottom: 0.125em solid transparent;
+        // font-style: italic;
     }
-    &.active a,
     a:hover,
     a:active {
-        border-bottom: 0.125em solid $dark-text;
+        // border-bottom: 0.125em solid $dark-text;
+        font-style: italic;
+    }
+    &.active a {
+        font-weight: $medium;
     }
 }
 
 .nav__link--home {
+    font-size: 2.4rem;
+    font-weight: $medium;
     margin-left: 2 * $base;
 }
 
 .nav__link--hamburger {
     display: none;
+}
+
+.carousel-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.carousel {}
+
+.carousel__cell {
+    width: 50%;
+    max-width: 900px;
+    margin: 0 3.475%;
+    filter: saturate(0);
+    opacity: 0.5;
+    transform: scale(0.67);
+    @include transition(all .25s ease-in-out);
+
+    &.is-selected {
+        filter: none;
+        opacity: 1;
+        transform: scale(1.0);
+    }
+
+    img {
+        width: 100%;
+        margin: 0 4px 4px 0;
+        box-shadow: 4px 4px 0 $shadow;
+        border-radius: 3px;
+        /* prevent background color leaks */
+        -webkit-background-clip: padding-box; 
+        -moz-background-clip:    padding; 
+        background-clip:         padding-box;
+    }
+}
+
+.slider-container {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    bottom: 2em;
+}
+
+.slider__label {
+    text-transform: uppercase;
+    font-weight: $regular;
+    width: 3.75em;
+}
+
+.slider__label--design {
+    text-align: right;
+    margin-right: 7.75vw;
+}
+
+.slider__label--code {
+    text-align: left;
+    margin-left: 7.75vw;
+}
+
+.slider {
+  width: 65%;
+  max-width: 1180px;
+  align-self: center;
 }
 
 .gallery-container {
@@ -170,12 +197,12 @@ nav {
 .gallery-item {
     width: 100%;
     margin: 2 * $base 0;
-    @include display(flex);
-    @include flex-flow(column nowrap);
-    @include align-items(flex-start);
-    @include justify-content(space-between);
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
     @media only screen and (min-width: 769px) {
-        @include flex-flow(row wrap);
+        flex-flow: row wrap;
     }
 }
 
@@ -202,7 +229,7 @@ nav {
     background: $light-nav-bg;
     box-shadow: 4px 4px 0 0 $dark-shadow;
     @media only screen and (min-width: 769px) {
-        @include order(-1);
+        order: -1;
         margin-bottom: 1em;
     }
 }
@@ -236,94 +263,13 @@ nav {
    Media Queries
    ========================================================================== */
 
-// large-desktop
-@media only screen and (min-width: 1799px) {
-    .gallery-container {
-        max-width: 144.8rem;
-    }
-    .gallery-item {
-        @include flex(row wrap);
-        @include justify-content(flex-start);
-    }
-    .gallery-item__header {
-        margin-left: 13.6rem;
-        margin-top: 6.8rem;
-    }
-    .gallery-item__title {
-        font-size: 5.5rem;
-        display: inline-block;
-    }
-    .gallery-item__media {
-        width: 50%;
-    }
-    .gallery-item__tags {
-        position: relative;
-        bottom: 36rem;
-        left: 72.4rem + 13.6rem;
-        font-size: 3.4rem;
-    }
-    .gallery-item__year {
-        display: inline-block;
-        margin-left: 2.3rem;
-    }
-}
+// very small mobile (i.e. iphone 5) specific styles...
+// bump the nav font-size down OR let the links wrap and center both rows
 
-// small desktop
-@media only screen and (max-width: 1024px) {
-    .nav__link {
-        margin-right: $base;
-    }
-    .nav__link--home {
-        margin-left: $base;
-    }
-}
+// small mobile
+@media only screen and (max-width: 320px) {}
 
-// large mobile
-@media only screen and (max-width: 768px) {
-    $base: 2.3rem;
-    body {
-        font-size: 1.4rem;
-        line-height: $base;
-    }
-    h1 {
-        font-size: 3.4rem;
-    }
-    h2 {
-        font-size: 2.1rem;
-    }
-    h3 {
-        font-size: 1em;
-    }
-    .nav__link {
-        margin-right: $base;
-    }
-    .nav__link--home {
-        margin-left: $base;
-    }
-    .gallery-container {
-        margin-top: 5.1rem + $base;
-        margin-left: $base;
-        margin-right: $base;
-    }
-    .gallery-filters {
-        margin: 0;
-        margin-bottom: 2 * $base;
-        text-align: left;
-    }
-    .gallery-item {
-        margin: 2 * $base 0;
-    }
-    .gallery-item__media {
-        width: 100%;
-        height: calc( (100vw - (2 * #{$base})) * 2/3 );
-        margin: 0.5em 0;
-    }
-    .gallery-item__tags {
-        @include align-self(flex-end);
-    }
-}
-
-@media only screen and (max-width: 445px) {
+@media only screen and (max-width: 540px) {
     .nav__container {
         // this becomes a modal
         display: none;
@@ -339,8 +285,200 @@ nav {
     }
 }
 
-// small mobile
-@media only screen and (max-width: 320px) {}
+// large mobile
+@media only screen and (max-width: 768px) {
+    h1 {
+        font-size: 2.4rem;
+    }
+    h2 {
+        font-size: 2.1rem;
+    }
+    h3 {
+        font-size: 2.1rem;
+    }
+    nav {
+        padding: 0;
+    }
 
-// very small mobile (i.e. iphone 5) specific styles...
-// bump the nav font-size down OR let the links wrap and center both rows
+    .carousel {
+        transform: translateY(-2em);
+    }
+
+    .carousel__cell {
+        width: calc(100vw - 4rem);
+        margin: 0 4em;
+        img {
+            margin: 0 4px 4px 0;
+            box-shadow: 4px 4px 0 $shadow;
+        }
+    }
+    .slider-container {
+        flex-wrap: wrap;
+        width: calc(100vw - 2em);
+        bottom: 1em;
+        left: 1em;
+    }
+
+    .slider {
+        width: 100%;
+        order: 1;
+    }
+
+    .slider__label {
+        flex: 1 auto;
+        margin: 0;
+        margin-top: 1em;
+    }
+
+    .slider__label--design {
+        order: 2;
+        text-align: left;
+
+    }
+    .slider__label--code {
+        order: 3;
+        text-align: right;
+    }
+}
+
+// small desktop
+@media only screen and (max-width: 1024px) {
+    .nav__link {
+        margin-right: $base;
+    }
+    .nav__link--home {
+        margin-left: $base;
+    }
+}
+
+// large-desktop
+@media only screen and (min-width: 1799px) {
+    .nav__link {
+        font-size: 4.2rem;
+    }
+    .nav__link--home {
+        font-size: 4.8rem;
+    }
+    .slider__label {
+        font-size: 4.2rem;
+    }
+
+    // update input-range vars
+    $thumb-height: 45px;
+    $thumb-width: 45px;
+    $thumb-shadow-size: 4px;
+    $thumb-border-width: 4px;
+
+    $track-height: 4px;
+
+    // update input-range mixins
+    @mixin shadow($shadow-size, $shadow-blur, $shadow-color) {
+      box-shadow: $shadow-size $shadow-size $shadow-blur $shadow-color, 0 0 $shadow-size lighten($shadow-color, 5%);
+    }
+
+    @mixin track {
+      cursor: pointer;
+      height: $track-height;
+      transition: all .125s ease-in-out;
+      width: $track-width;
+    }
+
+    @mixin thumb {
+      @include shadow($thumb-shadow-size, $thumb-shadow-blur, $thumb-shadow-color);
+      background: $thumb-color;
+      border: $thumb-border-width solid $thumb-border-color;
+      border-radius: $thumb-radius;
+      cursor: pointer;
+      height: $thumb-height;
+      width: $thumb-width;
+      transition: all .125s ease-in-out;
+      &:active {
+        transform: scale(2.0);
+        border: $thumb-border-width/2 solid $thumb-border-color;
+      }
+    }
+
+    // update input-range rules
+    [type='range'] {
+      -webkit-appearance: none;
+      margin: $thumb-height / 2 0;
+      width: $track-width;
+
+      &:focus {
+        outline: 0;
+
+        &::-webkit-slider-runnable-track {
+          background: lighten($track-color, $contrast);
+        }
+
+        &::-ms-fill-lower {
+          background: $track-color;
+        }
+
+        &::-ms-fill-upper {
+          background: lighten($track-color, $contrast);
+        }
+      }
+
+      &::-webkit-slider-runnable-track {
+        @include track;
+        @include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
+        background: $track-color;
+        border: $track-border-width solid $track-border-color;
+        border-radius: $track-radius;
+      }
+
+      &::-webkit-slider-thumb {
+        @include thumb;
+        -webkit-appearance: none;
+        margin-top: ((-$track-border-width * 2 + $track-height) / 2) - ($thumb-height / 2);
+      }
+
+      &::-moz-range-track {
+        @include track;
+        @include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
+        background: $track-color;
+        border: $track-border-width solid $track-border-color;
+        border-radius: $track-radius;
+      }
+
+      &::-moz-range-thumb {
+        @include thumb;
+      }
+
+      &::-ms-track {
+        @include track;
+        background: transparent;
+        border-color: transparent;
+        border-width: ($thumb-height / 2) 0;
+        color: transparent;
+      }
+
+      &::-ms-fill-lower {
+        @include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
+        background: darken($track-color, $contrast);
+        border: $track-border-width solid $track-border-color;
+        border-radius: $track-radius * 2;
+      }
+
+      &::-ms-fill-upper {
+        @include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
+        background: $track-color;
+        border: $track-border-width solid $track-border-color;
+        border-radius: $track-radius * 2;
+      }
+
+      &::-ms-thumb {
+        @include thumb;
+        margin-top: 0;
+      }
+    }
+}
+
+
+
+
+
+
+
+
