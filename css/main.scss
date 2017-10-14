@@ -5,7 +5,7 @@
    Main Styles
    ========================================================================== */
 
-$base: 3.06rem; // 2.3rem on mobile
+$base: 3.06rem;
 body {
     font-size: 1.8rem;
     line-height: $base;
@@ -68,8 +68,10 @@ nav {
     justify-content: space-between;
 }
 
+$nav_left: calc(9.75vw - 3.75 * 2.1rem);
+$nav_right: calc(9.75vw - 2.75 * 2.1rem);
+
 .nav__link {
-    margin-right: 2 * $base;
     font-size: 2.1rem;
     font-weight: $regular;
     text-transform: none;
@@ -92,11 +94,25 @@ nav {
 .nav__link--home {
     font-size: 2.4rem;
     font-weight: $medium;
-    margin-left: 2 * $base;
+    margin-left: $nav_left;
 }
 
 .nav__link--hamburger {
     display: none;
+}
+
+.nav__container {
+    .nav__link:after {
+        content: "/";
+        margin: 0 0.25em;
+    }
+
+    .nav__link:last-child {
+        margin-right: $nav_right;
+        &:after {
+            display: none;
+        }
+    }
 }
 
 .carousel-container {
@@ -137,7 +153,7 @@ nav {
 }
 
 .slider-container {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -267,9 +283,9 @@ nav {
 // bump the nav font-size down OR let the links wrap and center both rows
 
 // small mobile
-@media only screen and (max-width: 320px) {}
+@media all and (max-width: 320px) {}
 
-@media only screen and (max-width: 540px) {
+@media all and (max-width: 460px) {
     .nav__container {
         // this becomes a modal
         display: none;
@@ -282,11 +298,12 @@ nav {
     .nav__link--hamburger {
         // show/hide toggle
         display: block;
+        margin-right: $base;
     }
 }
 
 // large mobile
-@media only screen and (max-width: 768px) {
+@media all and (max-width: 768px) {
     h1 {
         font-size: 2.4rem;
     }
@@ -300,41 +317,57 @@ nav {
         padding: 0;
     }
 
-    .carousel {
-        transform: translateY(-2em);
+    .nav__link {
+        font-size: 1.8rem;
+    }
+
+    .nav__link--home {
+        margin-left: $base;
+    }
+
+    .nav__container .nav__link:last-child{
+        margin-right: $base;
+    }
+
+    .carousel-container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
     }
 
     .carousel__cell {
-        width: calc(100vw - 4rem);
-        margin: 0 4em;
+        width: calc(100vw - (2 * #{$base}));
+        margin: 0 calc(2 * #{$base});
         img {
             margin: 0 4px 4px 0;
             box-shadow: 4px 4px 0 $shadow;
         }
     }
+
     .slider-container {
         flex-wrap: wrap;
-        width: calc(100vw - 2em);
+        width: calc(100vw - (2 * #{$base}));
         bottom: 1em;
-        left: 1em;
+        left: $base;
     }
 
     .slider {
-        width: 100%;
+        width: 98%; // so thumb shadow doesn't get clipped
         order: 1;
     }
 
     .slider__label {
         flex: 1 auto;
         margin: 0;
-        margin-top: 1em;
+        margin-top: 0.5em;
+        font-size: 1.8rem;
     }
 
     .slider__label--design {
         order: 2;
         text-align: left;
-
     }
+
     .slider__label--code {
         order: 3;
         text-align: right;
@@ -342,23 +375,68 @@ nav {
 }
 
 // small desktop
-@media only screen and (max-width: 1024px) {
-    .nav__link {
-        margin-right: $base;
-    }
+@media all and (min-width: 769px) and (max-width: 1126px) {
     .nav__link--home {
         margin-left: $base;
+    }
+
+    .nav__container .nav__link:last-child{
+        margin-right: $base;
+    }
+
+    .slider-container {
+        width: calc(100vw - (2 * #{$base}));
+        justify-content: space-between;
+        left: $base;
+    }
+
+    .slider {
+        width: 100%;
+    }
+
+    $label_margin: calc( 0.0775 * (100 - (2 * #{$base})) );
+
+    .slider__label--design {
+        margin-right: $label_margin;
+    }
+
+    .slider__label--code {
+        margin-left: $label_margin;
     }
 }
 
 // large-desktop
-@media only screen and (min-width: 1799px) {
+@media all and (min-width: 1799px) {
+    $nav_left: calc(42.25vw - 59rem - 3.75 * 4.2rem);
+    $nav_right: calc(42.25vw - 59rem - 2.75 * 4.2rem);
+
+    .nav__container {
+        .nav__link:after {
+            content: "/";
+            margin: 0 0.25em;
+        }
+
+        .nav__link:last-child {
+            margin-right: $nav_right;
+            &:after {
+                display: none;
+            }
+        }
+    }
+
     .nav__link {
         font-size: 4.2rem;
     }
+
     .nav__link--home {
         font-size: 4.8rem;
+        margin-left: $nav_left;
     }
+
+    .nav__container .nav__link:last-child{
+        margin-right: $nav_right;
+    }
+
     .slider__label {
         font-size: 4.2rem;
     }
@@ -366,8 +444,8 @@ nav {
     // update input-range vars
     $thumb-height: 45px;
     $thumb-width: 45px;
-    $thumb-shadow-size: 4px;
-    $thumb-border-width: 4px;
+    $thumb-shadow-size: 4.5px;
+    // $thumb-border-width: 4.5px;
 
     $track-height: 4px;
 
