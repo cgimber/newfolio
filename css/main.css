@@ -613,6 +613,10 @@ nav {
     filter: none;
     opacity: 1;
     transform: scale(1); }
+  .carousel__cell.is-previous a {
+    cursor: w-resize; }
+  .carousel__cell.is-next a {
+    cursor: e-resize; }
   .carousel__cell img {
     width: 100%;
     margin: 0 4px 4px 0;
@@ -622,6 +626,9 @@ nav {
     -webkit-background-clip: padding-box;
     -moz-background-clip: padding;
     background-clip: padding-box; }
+
+.carousel__link {
+  border: none; }
 
 .slider-container {
   position: fixed;

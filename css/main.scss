@@ -140,6 +140,13 @@ $nav_right: calc(9.75vw - 2.75 * 2.1rem);
         transform: scale(1.0);
     }
 
+    &.is-previous a {
+        cursor: w-resize;
+    }
+    &.is-next a {
+        cursor: e-resize;
+    }
+
     img {
         width: 100%;
         margin: 0 4px 4px 0;
@@ -150,6 +157,10 @@ $nav_right: calc(9.75vw - 2.75 * 2.1rem);
         -moz-background-clip:    padding; 
         background-clip:         padding-box;
     }
+}
+
+.carousel__link {
+    border: none;
 }
 
 .slider-container {
